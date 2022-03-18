@@ -1,14 +1,12 @@
 package com.waracle.cakemgr.api;
 
-import com.waracle.cakemgr.model.CakeVo;
 import com.waracle.cakemgr.model.CakeResponse;
+import com.waracle.cakemgr.model.CakeVo;
 import com.waracle.cakemgr.model.CreateCakeRequest;
 import com.waracle.cakemgr.model.CreateCakeResponse;
 import com.waracle.cakemgr.service.CakeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
 
 @RequiredArgsConstructor
 @RestController
@@ -37,8 +35,8 @@ public class CakeController {
         return cakeService.createCakes(createCakeRequest);
     }
 
-    @GetMapping("cakes/current-user")
-    public Collection<CakeVo> getAllCakesForCurrentUser() {
-        throw new UnsupportedOperationException("This api is not supported yet");
+    @GetMapping("cakes/current-user/{userId}")
+    public CakeResponse getAllCakesForCurrentUser(@PathVariable("userId") final String userId) {
+        return cakeService.getCakesForUser(userId);
     }
 }

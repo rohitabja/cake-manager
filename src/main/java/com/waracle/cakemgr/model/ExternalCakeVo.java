@@ -5,14 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
-public class CakeVo {
+@NoArgsConstructor
+public class ExternalCakeVo {
 
     private Integer id;
-    private String name;
+    private String title;
     private String desc;
     private String image;
 

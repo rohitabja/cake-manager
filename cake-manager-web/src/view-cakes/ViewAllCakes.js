@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Table } from 'reactstrap'
+import React, { useEffect, useState } from "react";
+import { Container, Table } from "reactstrap";
 
 const ViewAllCakes = () => {
-  const [cakes, setCakes] = useState([])
+  const [cakes, setCakes] = useState([]);
 
   useEffect(async () => {
-    const response = await fetch('/api/v1/cakes')
-    const cakesResponse = await response.json()
-    setCakes(cakesResponse.cakes)
-  }, [])
+    const response = await fetch("/api/v1/cakes");
+    const cakesResponse = await response.json();
+    setCakes(cakesResponse.cakes);
+  }, []);
 
   return (
     <>
       <Container fluid>
-        <h3>Cakes</h3>
-        <Table className='mt-4'>
+        <Table className="mt-4">
           <thead>
             <tr>
               <th>Name</th>
@@ -25,10 +24,15 @@ const ViewAllCakes = () => {
           <tbody>
             {cakes.map((cake) => (
               <tr key={cake.id}>
-                <td>{cake.title}</td>
+                <td>{cake.name}</td>
                 <td>{cake.desc}</td>
                 <td>
-                  <img width={200} height={200} src={cake.image} alt={cake.image} />
+                  <img
+                    width={200}
+                    height={200}
+                    src={cake.image}
+                    alt={cake.image}
+                  />
                 </td>
               </tr>
             ))}
@@ -36,7 +40,7 @@ const ViewAllCakes = () => {
         </Table>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default ViewAllCakes
+export default ViewAllCakes;

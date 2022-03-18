@@ -17,4 +17,6 @@ public interface CakeService {
 
     CreateCakeResponse createCakes(@NotNull CreateCakeRequest createCakeRequest);
 
+    CakeResponse getCakesForUser(String userId);
+
 }
