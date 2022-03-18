@@ -6,6 +6,17 @@ spring:
     driver-class-name: org.hsqldb.jdbc.JDBCDriver
     url: jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
     username: sa
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            clientId: eea46b4987c11c3ff3de
+#            clientSecret: 618fc07e42a1c9fd2a968e1389e3247a78ead79a
+#            redirectUri: "http://localhost:8080/oauth2/code/github"
+#            scope:
+#              - user:email
+#              - read:user
 
 cake:
   storage:
