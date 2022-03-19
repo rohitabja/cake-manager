@@ -1,6 +1,8 @@
 package com.waracle.cakemgr.service;
 
 import com.waracle.cakemgr.data.CakeRepository;
+import com.waracle.cakemgr.data.UserCakeRepository;
+import com.waracle.cakemgr.data.UserRepository;
 import com.waracle.cakemgr.entity.Cake;
 import com.waracle.cakemgr.mapper.CakeMapper;
 import com.waracle.cakemgr.model.CakeResponse;
@@ -29,10 +31,15 @@ class CakeServiceImplTest {
     @Mock
     private CakeMapper cakeMapper;
 
+    @Mock
+    private UserCakeRepository cakeUserMappingRepository;
+
+    @Mock
+    private UserRepository userRepository;
 
     @BeforeEach
     void setup() {
-        testee = new CakeServiceImpl(cakeRepository, cakeMapper);
+        testee = new CakeServiceImpl(cakeRepository, cakeUserMappingRepository, userRepository, cakeMapper);
     }
 
     @Test

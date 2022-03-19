@@ -13,7 +13,7 @@ public interface CakeService {
 
     CakeVo getCakeForId(int id);
 
-    CakeVo createCake(@NotNull CakeVo cake);
+    CakeVo createCake(@NotNull CakeVo cake, String userLogin);
 
     CreateCakeResponse createCakes(@NotNull CreateCakeRequest createCakeRequest);
 

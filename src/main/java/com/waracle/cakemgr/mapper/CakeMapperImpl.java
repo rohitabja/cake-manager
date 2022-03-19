@@ -1,13 +1,16 @@
 package com.waracle.cakemgr.mapper;
 
 import com.waracle.cakemgr.entity.Cake;
+import com.waracle.cakemgr.entity.User;
 import com.waracle.cakemgr.model.CakeVo;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -16,10 +19,23 @@ class CakeMapperImpl implements CakeMapper {
     @Override
     public Cake mapToEntity(@NotNull final CakeVo cakeVo) {
         return Cake.builder()
-                .id(cakeVo.getId())
-                .name(cakeVo.getTitle())
+                .cakeId(cakeVo.getId())
+                .name(cakeVo.getName())
                 .description(cakeVo.getDesc())
                 .image(cakeVo.getImage())
+                .build();
+    }
+
+    @Override
+    public Cake mapToEntity(@NotNull final CakeVo cakeVo, @NotNull final User user) {
+        final List<User> users = new ArrayList<>();
+        users.add(user);
+        return Cake.builder()
+                .cakeId(cakeVo.getId())
+                .name(cakeVo.getName())
+                .description(cakeVo.getDesc())
+                .image(cakeVo.getImage())
+                .users(users)
                 .build();
     }
 
@@ -31,8 +47,8 @@ class CakeMapperImpl implements CakeMapper {
 
         return cakeVos.stream().map(cakeVo ->
                         Cake.builder()
-                                .id(cakeVo.getId())
-                                .name(cakeVo.getTitle())
+                                .cakeId(cakeVo.getId())
+                                .name(cakeVo.getName())
                                 .description(cakeVo.getDesc())
                                 .image(cakeVo.getImage())
                                 .build())
@@ -42,8 +58,8 @@ class CakeMapperImpl implements CakeMapper {
     @Override
     public CakeVo mapToVo(@NotNull final Cake cake) {
         return CakeVo.builder()
-                .id(cake.getId())
-                .title(cake.getName())
+                .id(cake.getCakeId())
+                .name(cake.getName())
                 .desc(cake.getDescription())
                 .image(cake.getImage())
                 .build();
@@ -57,8 +73,8 @@ class CakeMapperImpl implements CakeMapper {
 
         return cakes.stream().map(cake ->
                         CakeVo.builder()
-                                .id(cake.getId())
-                                .title(cake.getName())
+                                .id(cake.getCakeId())
+                                .name(cake.getName())
                                 .desc(cake.getDescription())
                                 .image(cake.getImage())
                                 .build())

@@ -28,13 +28,13 @@ class CakeMapperImplTest {
     void shouldMapASingleCakeToEntity() {
         final Cake actual = testee.mapToEntity(CakeVo.builder()
                 .id(99)
-                .title("My Cake")
+                .name("My Cake")
                 .desc("My delicious cake")
                 .image("abc.com")
                 .build());
 
         assertThat(actual).isNotNull();
-        assertThat(actual.getId()).isEqualTo(99);
+        assertThat(actual.getCakeId()).isEqualTo(99);
         assertThat(actual.getName()).isEqualTo("My Cake");
         assertThat(actual.getDescription()).isEqualTo("My delicious cake");
         assertThat(actual.getImage()).isEqualTo("abc.com");
@@ -45,14 +45,14 @@ class CakeMapperImplTest {
         final List<CakeVo> cakes = new ArrayList<>();
         cakes.add(CakeVo.builder()
                 .id(99)
-                .title("My 99 Cake")
+                .name("My 99 Cake")
                 .desc("My delicious cake")
                 .image("abc.com")
                 .build());
 
         cakes.add(CakeVo.builder()
                 .id(100)
-                .title("My 100 Cake")
+                .name("My 100 Cake")
                 .desc("My most delicious cake")
                 .image("xyz.com")
                 .build());
@@ -60,11 +60,11 @@ class CakeMapperImplTest {
         final Collection<Cake> actual = testee.mapToEntity(cakes);
 
         final List<Cake> expected = new ArrayList<>();
-        expected.add(Cake.builder().id(99)
+        expected.add(Cake.builder().cakeId(99)
                 .name("My 99 Cake")
                 .description("My delicious cake")
                 .image("abc.com").build());
-        expected.add(Cake.builder().id(100)
+        expected.add(Cake.builder().cakeId(100)
                 .name("My 100 Cake")
                 .description("My most delicious cake")
                 .image("xyz.com").build());
