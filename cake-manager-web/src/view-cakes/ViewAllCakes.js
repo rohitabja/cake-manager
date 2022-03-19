@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "reactstrap";
+import DownloadCakes from "../download-cakes/DownloadCakes";
 
 const ViewAllCakes = () => {
   const [cakes, setCakes] = useState([]);
+  const [userInfo, setUserInfo] = useState(undefined);
+
+  useEffect(async () => {
+    const response = await fetch("/user");
+    const userResponse = await response.json();
+    setUserInfo(userResponse);
+  }, []);
 
   useEffect(async () => {
     const response = await fetch("/api/v1/cakes");
@@ -13,6 +21,8 @@ const ViewAllCakes = () => {
   return (
     <>
       <Container fluid>
+        <div className="float-right">{userInfo && <DownloadCakes />}</div>
+
         <Table className="mt-4">
           <thead>
             <tr>

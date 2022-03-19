@@ -11,7 +11,14 @@ const Login = () => {
 
   if (userInfo)
     return (
-      <div className="float-right">{`Logged in as: ${userInfo.login}`}</div>
+      <div>
+        <img
+          width={50}
+          height={50}
+          src={userInfo.avatar_url}
+          alt={userInfo.avatar_url}
+        />
+      </div>
     );
 
   return <></>;

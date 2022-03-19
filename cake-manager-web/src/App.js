@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddCake from "./add-cakes/AddCake";
 
 import "./App.css";
@@ -12,11 +12,10 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-        <Login />
-        <Switch>
-          <Route path="/" exact={true} component={ViewAllCakes} />
-          <Route path="/addCake" exact={true} component={AddCake} />
-        </Switch>
+        <Routes>
+          <Route path="/" exact={true} element={<ViewAllCakes />} />
+          <Route path="/cakes" exact={true} element={<AddCake />} />
+        </Routes>
       </BrowserRouter>
     </>
   );

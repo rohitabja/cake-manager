@@ -7,7 +7,6 @@ import com.waracle.cakemgr.entity.Cake;
 import com.waracle.cakemgr.entity.User;
 import com.waracle.cakemgr.entity.UserCakeMapping;
 import com.waracle.cakemgr.exception.CakeNotFoundException;
-import com.waracle.cakemgr.exception.UserNotFoundException;
 import com.waracle.cakemgr.mapper.CakeMapper;
 import com.waracle.cakemgr.model.CakeResponse;
 import com.waracle.cakemgr.model.CakeVo;
@@ -16,6 +15,7 @@ import com.waracle.cakemgr.model.CreateCakeResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -51,14 +51,20 @@ class CakeServiceImpl implements CakeService {
 
     @Override
     @Transactional
-    public CakeVo createCake(@NotNull final CakeVo cakeVo) {
-        final Optional<User> userFound = userRepository.findByUserKey("12345");
+    public CakeVo createCake(@NotNull final CakeVo cakeVo, final String userLogin) {
+        final Optional<User> userFound;
+        if (StringUtils.hasText(userLogin)) {
+            userFound = userRepository.findByUserKey(userLogin);
+        } else {
+            userFound = Optional.empty();
+        }
+
         final Cake savedCake;
         if (userFound.isEmpty()) {
             savedCake = cakeMapper.mapToEntity(cakeVo);
             final List<Cake> cakes = new ArrayList<>();
             cakes.add(savedCake);
-            userRepository.saveAndFlush(User.builder().userKey("12345").cakes(cakes).build());
+            userRepository.saveAndFlush(User.builder().userKey(userLogin).cakes(cakes).build());
         } else {
             savedCake = cakeRepository.saveAndFlush(cakeMapper.mapToEntity(cakeVo, userFound.get()));
             userCakeRepository.save(UserCakeMapping.builder().userId(userFound.get().getUserId()).cakeId(savedCake.getCakeId()).build());
@@ -74,13 +80,4 @@ class CakeServiceImpl implements CakeService {
         return CreateCakeResponse.builder().cakes(cakeMapper.mapToVo(savedCakes)).build();
     }
 
-    @Override
-    @Transactional
-    public CakeResponse getCakesForUser(final String userKey) {
-        final Optional<User> foundUser = userRepository.findByUserKey(userKey);
-        return foundUser.map(user -> CakeResponse.builder()
-                        .cakes(cakeMapper.mapToVo(user.getCakes()))
-                        .build())
-                .orElseThrow(() -> new UserNotFoundException(String.format("User not found for %s", userKey)));
-    }
 }

@@ -6,13 +6,15 @@ import Login from "../login/Login";
 const NavBar = () => {
   return (
     <Navbar color="dark" dark expand="md">
+      <NavbarBrand>
+        <Login />
+      </NavbarBrand>
       <NavbarBrand tag={Link} to="/">
         Cakes
       </NavbarBrand>
-      <NavbarBrand tag={Link} to="/addCake">
+      <NavbarBrand tag={Link} to="/cakes">
         Add Cake
       </NavbarBrand>
-      {/* <Login /> */}
     </Navbar>
   );
 };

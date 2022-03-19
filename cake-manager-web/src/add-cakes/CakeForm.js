@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Button, Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 
 const CakeForm = () => {
   const [cake, setCake] = useState(undefined);
   const [submitting, setSubmitting] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,7 +19,9 @@ const CakeForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(cake),
-    }).finally(() => setSubmitting(false));
+    })
+      .then(() => navigate("/"))
+      .finally(() => setSubmitting(false));
   };
 
   const handleChange = (event, fieldName) => {
@@ -48,7 +53,7 @@ const CakeForm = () => {
             onChange={(e) => handleChange(e, "name")}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label className="control-label col-sm-2" htmlFor="desc">
             Description
           </label>
@@ -63,7 +68,7 @@ const CakeForm = () => {
         </div>
         <div className="form-group">
           <label className="control-label col-sm-2" htmlFor="image">
-            Image
+            Image Url
           </label>
           <input
             id="image"
@@ -75,9 +80,9 @@ const CakeForm = () => {
         </div>
         <div className="form-group">
           <div className="mt-3">
-            <Button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary">
               Submit
-            </Button>
+            </button>
           </div>
         </div>
       </form>

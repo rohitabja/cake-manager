@@ -3,7 +3,7 @@ import CakeForm from "./CakeForm";
 
 const AddCake = () => {
   return (
-    <div className="container">
+    <div className="container mt-2">
       <CakeForm />
     </div>
   );
