@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, NavbarBrand } from "reactstrap";
+import Login from "../login/Login";
 
 const NavBar = () => {
   return (
@@ -11,6 +12,7 @@ const NavBar = () => {
       <NavbarBrand tag={Link} to="/addCake">
         Add Cake
       </NavbarBrand>
+      {/* <Login /> */}
     </Navbar>
   );
 };

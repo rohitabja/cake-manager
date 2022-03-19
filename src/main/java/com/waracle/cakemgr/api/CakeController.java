@@ -20,9 +20,9 @@ public class CakeController {
         return cakeService.getAllCakes();
     }
 
-    @GetMapping("cake/{id}")
-    public CakeVo getCakeForId(@PathVariable("id") final int id) {
-        return cakeService.getCakeForId(id);
+    @PostMapping("cakes")
+    public CreateCakeResponse createCakes(@RequestBody final CreateCakeRequest createCakeRequest) {
+        return cakeService.createCakes(createCakeRequest);
     }
 
     @PostMapping("cake")
@@ -30,9 +30,9 @@ public class CakeController {
         return cakeService.createCake(cake);
     }
 
-    @PostMapping("cakes")
-    public CreateCakeResponse createCakes(@RequestBody final CreateCakeRequest createCakeRequest) {
-        return cakeService.createCakes(createCakeRequest);
+    @GetMapping("cake/{id}")
+    public CakeVo getCakeForId(@PathVariable("id") final int id) {
+        return cakeService.getCakeForId(id);
     }
 
     @GetMapping("cakes/current-user/{userId}")
