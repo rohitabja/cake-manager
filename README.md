@@ -74,3 +74,20 @@ Running front-end and back-end separately
 > /
 - Add cake
 > /cakes
+ 
+### Containerisation
+
+- Docker image has been pushed to docker repository (download link below)
+> docker pull rohitabja143/cake-manager-app
+ 
+#### Useful docker commands
+- Build docker image
+> docker build -t cake-manager . (run from Dockerfile root directory)
+- Run image on docker container
+> docker run -dp 8090:8080 cake-manager
+- Tag docker image to publish to docker hub
+> docker tag cake-manager rohitabja143/cake-manager-app
+- Push docker image to docker hub repository
+> docker push rohitabja143/cake-manager-app
+- Pull docker image
+> docker pull rohitabja143/cake-manager-app
