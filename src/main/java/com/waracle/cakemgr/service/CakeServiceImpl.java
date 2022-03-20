@@ -67,7 +67,10 @@ class CakeServiceImpl implements CakeService {
             userRepository.saveAndFlush(User.builder().userKey(userLogin).cakes(cakes).build());
         } else {
             savedCake = cakeRepository.saveAndFlush(cakeMapper.mapToEntity(cakeVo, userFound.get()));
-            userCakeRepository.save(UserCakeMapping.builder().userId(userFound.get().getUserId()).cakeId(savedCake.getCakeId()).build());
+            userCakeRepository.save(UserCakeMapping.builder()
+                    .userId(userFound.get().getUserId())
+                    .cakeId(savedCake.getCakeId())
+                    .build());
         }
 
         return cakeMapper.mapToVo(savedCake);
