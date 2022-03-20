@@ -1,7 +1,14 @@
 # Cake Manager App
-Spring boot app for Cake Manager App
+Cake Manager App to build cakes
 
-## Run the app in local
+## Tech stack
+> Spring boot
+> 
+> OAuth2
+> 
+> React
+
+## Build & Run app in local
 ### Build the app
 > mvn clean install 
 
@@ -44,3 +51,24 @@ Running front-end and back-end separately
 - Add Cake nav bar would allow user to input cake details and add to the system
 - Once the cake is added, user can see the new cake in the home page
 
+### Endpoints and Routes
+
+###### Api Endpoints
+
+- Get all cakes from system
+> GET /api/v1/cakes
+- Download cakes
+> GET /api/v1/download-cakes
+- Get cake by id
+> GET /api/v1/cake/{id}
+- Create cakes
+> POST /api/v1/cakes
+- Create cake
+> POST /api/v1/cake
+ 
+###### Routes
+
+- List of cakes and download cakes
+> /
+- Add cake
+> /cakes
