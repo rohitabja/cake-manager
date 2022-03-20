@@ -17,6 +17,8 @@ Cake Manager App to build cakes
 
 ### Run the app in bundled mode (spring boot + web)
 > mvn spring-boot:run
+> 
+> java -jar ./target/cake-manager-1.0-SNAPSHOT.war
 
 ### Web page to serve the frontend
 > http://localhost:8080

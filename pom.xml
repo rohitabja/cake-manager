@@ -13,6 +13,7 @@
     <groupId>com.waracle</groupId>
     <artifactId>cake-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>cake-manager</name>
     <description>Cake Manager Application project for Spring Boot</description>
 
@@ -22,6 +23,8 @@
         <node.version>v16.14.1</node.version>
         <yarn.version>v1.22.17</yarn.version>
         <frontend-maven-plugin.version>1.7.6</frontend-maven-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
